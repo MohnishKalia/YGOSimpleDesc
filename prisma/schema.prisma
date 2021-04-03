@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./cards.cdb"
+}
+
+model datas {
+  id        Int  @id @default(autoincrement())
+  ot        Int?
+  alias     Int?
+  setcode   Int?
+  type      Int?
+  atk       Int?
+  def       Int?
+  level     Int?
+  race      Int?
+  attribute Int?
+  category  Int?
+}
+
+model texts {
+  id    Int     @id @default(autoincrement())
+  name  String?
+  desc  String?
+  sdesc String?
+  str1  String?
+  str2  String?
+  str3  String?
+  str4  String?
+  str5  String?
+  str6  String?
+  str7  String?
+  str8  String?
+  str9  String?
+  str10 String?
+  str11 String?
+  str12 String?
+  str13 String?
+  str14 String?
+  str15 String?
+  str16 String?
+}
