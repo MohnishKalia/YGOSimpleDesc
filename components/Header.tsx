@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 
 import ViewCarousel from '@material-ui/icons/ViewCarousel';
 
+import Link from 'next/link';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -26,9 +28,11 @@ export default function Header() {
     return (
         <AppBar className={classes.root} position="static">
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <ViewCarousel />
-                </IconButton>
+                <Link href="/">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        <ViewCarousel />
+                    </IconButton>
+                </Link>
                 <Typography variant="h6" className={classes.title}>
                     YGO Simple Descriptions
                 </Typography>
