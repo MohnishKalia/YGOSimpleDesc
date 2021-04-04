@@ -19,7 +19,11 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.3",
+    "enquirer": "^2.3.6",
     "prisma": "^2.20.1",
-    "typescript": "^4.2.3"
+    "sqlite": "^4.0.21",
+    "sqlite3": "^5.0.2",
+    "typescript": "^4.2.3",
+    "word-wrap": "^1.2.3"
   }
 }
