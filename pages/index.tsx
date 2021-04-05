@@ -1,14 +1,12 @@
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { GetStaticProps } from 'next';
-import { PrismaClient } from '@prisma/client';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
+
+import prisma from '../lib/prisma';
 
 interface SQLOption {
 	id: number;
@@ -67,7 +65,7 @@ export default function Home({ options }: { options: Option[] }) {
 					variant="outlined"
 					inputProps={{
 						...params.inputProps,
-						autoComplete: 'new-password', // disable autocomplete and autofill
+						autoComplete: 'off', // disable autocomplete and autofill
 					}}
 				/>
 			)}
@@ -75,10 +73,7 @@ export default function Home({ options }: { options: Option[] }) {
 	)
 }
 
-// https://db.ygoprodeck.com/api/v7/cardinfo.php?id=03298689
-
 export const getStaticProps: GetStaticProps = async (context) => {
-	const prisma = new PrismaClient();
 	const results: SQLOption[] = await prisma.$queryRaw`
 		SELECT d.id, t.name, d.type from texts t
 		inner join datas d
