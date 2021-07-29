@@ -4,11 +4,11 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = "file:./cards.cdb"
+  url      = "file:../db/cards.cdb"
 }
 
 model datas {
-  id        Int  @id @default(autoincrement())
+  id        Int  @id
   ot        Int?
   alias     Int?
   setcode   Int?
@@ -22,10 +22,9 @@ model datas {
 }
 
 model texts {
-  id    Int     @id @default(autoincrement())
+  id    Int     @id
   name  String?
   desc  String?
-  sdesc String?
   str1  String?
   str2  String?
   str3  String?
@@ -42,4 +41,17 @@ model texts {
   str14 String?
   str15 String?
   str16 String?
+}
+
+model simple_descs {
+  id    Int     @id
+  sdesc String
+}
+
+model snapshot {
+  id    Int     @id
+  type  Int?
+  name  String?
+  desc  String?
+  sdesc String
 }

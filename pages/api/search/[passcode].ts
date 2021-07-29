@@ -24,10 +24,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const json = await response.json();
 
     const card = (await prisma.$queryRaw`
-        SELECT d.id, t.name, t.desc, t.sdesc from texts t
-            inner join datas d
-                on t.id = d.id
-            where d.id = ${passcode}
+        SELECT id, name, desc, sdesc FROM snapshot
+            WHERE id = ${passcode}
         `)[0];
 
     res.status(200).json({ ...card, url: json.data[0].card_images[0].image_url } as SearchResponse);

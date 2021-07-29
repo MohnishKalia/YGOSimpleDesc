@@ -6,7 +6,7 @@ const sqlite3 = require('sqlite3');
 async function main() {
     try {
         const db = await open({
-            filename: '../prisma/cards.cdb',
+            filename: '../db/sdesc.db',
             driver: sqlite3.Database
         });
 

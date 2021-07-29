@@ -20,6 +20,7 @@ interface TabPanelProps {
     children?: React.ReactNode;
     index: any;
     value: any;
+    className?: string;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -55,6 +56,11 @@ const useStyles = makeStyles((theme) => ({
     button: {
         marginBottom: theme.spacing(1),
     },
+    imgCenter: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 }));
 
 const fetcher = async (url: string) => {
@@ -112,7 +118,7 @@ export default function Passcode() {
                 <TabPanel value={value} index={1}>
                     <Typography variant="body2">{data.desc}</Typography>
                 </TabPanel>
-                <TabPanel value={value} index={2}>
+                <TabPanel value={value} index={2} className={classes.imgCenter}>
                     <Image
                         src={data.url}
                         alt="card image"

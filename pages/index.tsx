@@ -74,11 +74,7 @@ export default function Home({ options }: { options: Option[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const results: SQLOption[] = await prisma.$queryRaw`
-		SELECT d.id, t.name, d.type from texts t
-		inner join datas d
-			on t.id = d.id
-		`;
+	const results: SQLOption[] = await prisma.$queryRaw`SELECT id, name, type FROM snapshot`;
 	const options: Option[] = results.map((option) => {
 		let type = '';
 		if ((option.type & 1) === 1) type = 'Monster';
