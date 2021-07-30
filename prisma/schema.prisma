@@ -53,5 +53,5 @@ model snapshot {
   type  Int?
   name  String?
   desc  String?
-  sdesc String
+  sdesc String?
 }

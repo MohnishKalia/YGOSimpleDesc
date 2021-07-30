@@ -1,4 +1,3 @@
-import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -74,13 +73,17 @@ export default function Home({ options }: { options: Option[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const results: SQLOption[] = await prisma.$queryRaw`SELECT id, name, type FROM snapshot`;
-	const options: Option[] = results.map((option) => {
+	const results = await prisma.snapshot.findMany({
+        select: { id: true, name: true, type: true},
+    });
+	const options= results.map((option) => {
 		let type = '';
-		if ((option.type & 1) === 1) type = 'Monster';
-		if ((option.type & 2) === 2) type = 'Spell';
-		if ((option.type & 4) === 4) type = 'Trap';
-		if ((option.type & 8) === 8) type = 'N/A';
+		if (!option.type || (option.type & 8) === 8) type = 'N/A';
+		else {
+			if ((option.type & 1) === 1) type = 'Monster';
+			if ((option.type & 2) === 2) type = 'Spell';
+			if ((option.type & 4) === 4) type = 'Trap';
+		}
 
 		return { ...option, type };
 	}).sort((a, b) => -b.type.localeCompare(a.type));
